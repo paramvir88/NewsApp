@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.paramvir.paramnews.databinding.HeadlinesListItemBinding
+import com.bumptech.glide.Glide
 import com.paramvir.paramnews.R
+import com.paramvir.paramnews.databinding.HeadlinesListItemBinding
 import com.paramvir.paramnews.headlines.domain.NewsHeadlines
 
 class HeadlinesAdapter(
@@ -34,13 +35,17 @@ class HeadlinesAdapter(
                 headlineLayout.setOnClickListener {
                     newsClickListener?.onClick(url ?: "")
                 }
-                articleTitle.text = title
-                articleDescription.text = description
-                articleAuthor.text = "Author: $author"
-                readLater.setOnClickListener {
+                newsHeadline.text = title
+                newsDescription.text = description
+                newsAuthor.text = "Author: $author"
+                /*saveButton.setOnClickListener {
                     newsClickListener?.saveLater(this@run)
-                }
-                //Glide
+                }*/
+                Glide.with(context)
+                    .load(headlines[position].pic)
+                    .placeholder(R.drawable.baseline_newspaper_24)
+                    .centerCrop()
+                    .into(newsImage);
             }
         }
 
@@ -53,7 +58,6 @@ class HeadlinesAdapter(
 
     interface NewsClickListener {
         fun onClick(url: String)
-        fun saveLater(news: NewsHeadlines)
     }
 
 
@@ -62,6 +66,10 @@ class HeadlinesAdapter(
         headlines = newHeadlines
         notifyDataSetChanged()
 
+    }
+
+    fun setOnClickListener(onClickListener: NewsClickListener) {
+        this.newsClickListener = onClickListener
     }
 
 }

@@ -1,49 +1,41 @@
 package com.paramvir.paramnews.headlines.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.paramvir.paramnews.R
 import com.paramvir.paramnews.Resource
+import com.paramvir.paramnews.databinding.FragmentHeadlinesBinding
+import com.paramvir.paramnews.headlines.HEADLINE_URL
 import com.paramvir.paramnews.headlines.domain.NewsHeadlines
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * For showing the headlines.
+ * The main landing fragment where the headlines for the selected sources are shown.
  */
 
 @AndroidEntryPoint
 class HeadlinesFragment : Fragment() {
     private val viewModel: HeadlinesViewModel by viewModels()
+    private lateinit var binding: FragmentHeadlinesBinding
     private lateinit var headlinesAdapter: HeadlinesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.news_fragment_layout, container, false)
-        val recyclerView = view.rootView.findViewById<RecyclerView>(R.id.news_list)
-
-        initializeList(recyclerView)
+        binding = FragmentHeadlinesBinding.inflate(layoutInflater)
+        val view = binding.root
+        prepareNewsList()
+        handleHeadlineClick()
         return view
     }
-
-    private fun initializeList(recyclerView: RecyclerView) {
-        with(recyclerView) {
-            layoutManager = LinearLayoutManager(activity)
-            setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
-            headlinesAdapter = HeadlinesAdapter(requireContext(), emptyList())
-            adapter = headlinesAdapter
-        }
-    }
-
 
     override fun onStart() {
 
@@ -52,7 +44,7 @@ class HeadlinesFragment : Fragment() {
         viewModel.headlinesLiveData.observe(this) {
             when (it) {
                 is Resource.ResourceSuccess -> {
-                    updateSuccessUi(it.data)
+                    refreshNews(it.data)
                 }
 
                 is Resource.ResourceError -> {
@@ -60,19 +52,44 @@ class HeadlinesFragment : Fragment() {
                 }
 
                 is Resource.ResourceLoading -> {
-                    //news_progressBar.visibility = View.VISIBLE
+                    binding.newsProgressBar.visibility = View.VISIBLE
                 }
             }
         }
     }
 
-    private fun updateSuccessUi(newsHeadlines: List<NewsHeadlines>) {
-        //news_progressBar.visibility = View.GONE
+
+    private fun prepareNewsList() {
+        with(binding.newsList) {
+            layoutManager = LinearLayoutManager(activity)
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
+            headlinesAdapter = HeadlinesAdapter(requireContext(), emptyList())
+            adapter = headlinesAdapter
+        }
+    }
+
+    private fun refreshNews(newsHeadlines: List<NewsHeadlines>) {
+        binding.newsProgressBar.visibility = View.GONE
         if (newsHeadlines.isEmpty()) {
-            //error_textView.visibility = View.VISIBLE
-            //error_textView.text = "Oh oh! No news to read for now"
+            binding.errorTextView.visibility = View.VISIBLE
+            binding.errorTextView.text = "There are no news for the selected sources. Try changing the sources."
         } else {
             headlinesAdapter.updateHeadlines(newsHeadlines)
         }
+    }
+
+    private fun handleHeadlineClick() {
+        headlinesAdapter.setOnClickListener(object :
+            HeadlinesAdapter.NewsClickListener {
+            override fun onClick(url: String) {
+                val bundle = Bundle()
+                bundle.putString(HEADLINE_URL, url)
+                val intent = Intent(requireContext(), HeadlinesDetailsActivity::class.java)
+                intent.putExtras(bundle)
+                requireActivity().startActivity(intent)
+            }
+
+        })
     }
 }
