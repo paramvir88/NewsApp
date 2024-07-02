@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.paramvir.paramnews.NewsActivity
 import com.paramvir.paramnews.Resource
 import com.paramvir.paramnews.databinding.FragmentHeadlinesBinding
 import com.paramvir.paramnews.headlines.HEADLINE_URL
@@ -39,7 +40,7 @@ class HeadlinesFragment : Fragment() {
     override fun onStart() {
 
         super.onStart()
-        viewModel.getHeadlines("")
+        viewModel.getHeadlines((activity as NewsActivity).sourceArray)
         viewModel.headlinesLiveData.observe(this) {
             when (it) {
                 is Resource.ResourceSuccess -> {

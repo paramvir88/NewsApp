@@ -22,7 +22,7 @@ class SourcesViewModel @Inject constructor(private val repo: ISourceRepo) : View
             if (res.isSuccessful) {
                 res.body()?.let {
                     _sourceLiveData.value =
-                        Resource.ResourceSuccess(getNewsSources(res.body()!!.sources))
+                        Resource.ResourceSuccess(getNewsSources(res.body()?.sources))
                 }
             } else {
                 _sourceLiveData.value = Resource.ResourceError(Exception("Unable to get sources"))
@@ -30,9 +30,9 @@ class SourcesViewModel @Inject constructor(private val repo: ISourceRepo) : View
         }
     }
 
-    private fun getNewsSources(list: List<Source>): List<NewsSources> {
+    private fun getNewsSources(list: List<Source>?): List<NewsSources> {
         val listOfNewSources = mutableListOf<NewsSources>()
-        list.forEach {
+        list?.forEach {
             listOfNewSources.add(NewsSources(it.id, it.name))
         }
         return listOfNewSources

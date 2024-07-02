@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.paramvir.paramnews.Resource
 import com.paramvir.paramnews.headlines.DEFAULT_SOURCE
 import com.paramvir.paramnews.headlines.News
-import com.paramvir.paramnews.headlines.NewsRepository
 import com.paramvir.paramnews.headlines.domain.NewsHeadlines
 import com.paramvir.paramnews.headlines.network.Article
 import com.paramvir.paramnews.headlines.repo.IHeadlinesRepo
@@ -31,11 +30,12 @@ class HeadlinesViewModel @Inject constructor(
     /**
      * For the fragment to get the headlines data. The data is updated via the Livedata
      */
-    fun getHeadlines(source: String) {
+    fun getHeadlines(sources: List<String>) {
 
         _headlinesLiveData.value = Resource.ResourceLoading()
         viewModelScope.launch {
-            val response = headlineRepo.getHeadlines(source.ifEmpty { DEFAULT_SOURCE })
+            val response =
+                headlineRepo.getHeadlines(getSelectedSources(sources).ifEmpty { DEFAULT_SOURCE })
             if (response.isSuccessful) {
                 response.body()?.let {
                     _headlinesLiveData.value =
@@ -47,6 +47,14 @@ class HeadlinesViewModel @Inject constructor(
                     Resource.ResourceError(Exception(response.message()))
             }
         }
+    }
+
+    private fun getSelectedSources(sources: List<String>): String {
+        var sourceStr = ""
+        sources.forEach {
+            sourceStr = "$sourceStr,$it"
+        }
+        return sourceStr
     }
 
     private fun getHeadlinesFromArticles(articles: List<Article>): List<NewsHeadlines> {

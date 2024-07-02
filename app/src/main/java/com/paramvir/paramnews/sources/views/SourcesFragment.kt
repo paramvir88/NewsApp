@@ -12,8 +12,6 @@ import com.paramvir.paramnews.NewsActivity
 import com.paramvir.paramnews.Resource
 import com.paramvir.paramnews.databinding.FragmentSourcesBinding
 import com.paramvir.paramnews.sources.domain.NewsSources
-import com.paramvir.paramnews.sources.views.SourceAdapter
-import com.paramvir.paramnews.sources.views.SourcesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +36,12 @@ class SourcesFragment : Fragment() {
     ): View? {
         binding = FragmentSourcesBinding.inflate(layoutInflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initializeList()
+        handleSourceClick()
     }
 
     private fun handleUI(it: Resource<List<NewsSources>>?) {
@@ -65,12 +69,6 @@ class SourcesFragment : Fragment() {
         binding.errorTextView.text = "Could not load the sources."
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initializeList()
-        handleSourceClick()
-    }
 
     private fun handleSourceClick() {
         sourceAdapter.setOnClickListener(object :
