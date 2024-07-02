@@ -5,4 +5,8 @@
         android:id="@+id/headlinesFragment"
         android:title="Headlines" />
 
+    <item
+        android:id="@+id/sourcesFragment"
+        android:title="Sources" />
+
 </menu>

@@ -1,7 +1,7 @@
 package com.paramvir.paramnews.di
 
-import com.android.newsapp.sources.repo.ISourceRepo
-import com.android.newsapp.sources.repo.SourceRepo
+import com.paramvir.paramnews.sources.repo.ISourceRepo
+import com.paramvir.paramnews.sources.repo.SourceRepo
 import com.paramvir.paramnews.headlines.repo.HeadlinesRepo
 import com.paramvir.paramnews.headlines.repo.IHeadlinesRepo
 import dagger.Binds

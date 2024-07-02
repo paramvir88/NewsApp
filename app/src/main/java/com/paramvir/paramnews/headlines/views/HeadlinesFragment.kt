@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -30,7 +29,7 @@ class HeadlinesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHeadlinesBinding.inflate(layoutInflater)
+        binding = FragmentHeadlinesBinding.inflate(layoutInflater, container, false)
         val view = binding.root
         prepareNewsList()
         handleHeadlineClick()
@@ -73,7 +72,8 @@ class HeadlinesFragment : Fragment() {
         binding.newsProgressBar.visibility = View.GONE
         if (newsHeadlines.isEmpty()) {
             binding.errorTextView.visibility = View.VISIBLE
-            binding.errorTextView.text = "There are no news for the selected sources. Try changing the sources."
+            binding.errorTextView.text =
+                "There are no news for the selected sources. Try changing the sources."
         } else {
             headlinesAdapter.updateHeadlines(newsHeadlines)
         }

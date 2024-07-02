@@ -1,4 +1,4 @@
-package com.android.newsapp.sources.repo
+package com.paramvir.paramnews.sources.repo
 
 import com.paramvir.paramnews.api.SourceApi
 import com.paramvir.paramnews.api.SourcesResponse

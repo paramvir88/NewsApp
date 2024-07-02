@@ -10,4 +10,10 @@
         android:name="com.paramvir.paramnews.headlines.views.HeadlinesFragment"
         android:label="Headlines"
         tools:layout="@layout/fragment_headlines" />
+
+    <fragment
+        android:id="@+id/sourcesFragment"
+        android:name="com.paramvir.paramnews.sources.views.SourcesFragment"
+        android:label="Sources"
+        tools:layout="@layout/fragment_sources" />
 </navigation>
