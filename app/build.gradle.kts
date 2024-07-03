@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.paramvir.paramnews"
+    namespace = "com.paramvir.news"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.paramvir.paramnews"
+        applicationId = "com.paramvir.news"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -88,9 +88,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //xml
+    //UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-
 
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.1")
@@ -105,7 +104,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
-
+    //Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
 
