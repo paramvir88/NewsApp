@@ -39,17 +39,13 @@ class SavedArticleFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         viewModel.savedHeadlinesLiveData.observe(this) {
-            val list = mutableListOf<NewsHeadlines>()
-            it.forEach {
-                list.add(
-                    getNewsHeadlinesFromNews(it)
-                )
-            }
-            savedadapter = SavedArticleAdapter(requireContext(), list)
+
+            savedadapter = SavedArticleAdapter(requireContext(), it)
             binding.newsList.adapter = savedadapter
             handleNewsClick()
 
         }
+        viewModel.getSavedArticles(requireContext())
     }
 
     private fun initializeList() {

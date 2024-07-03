@@ -1,10 +1,9 @@
 package com.paramvir.paramnews.saved
 
-import androidx.lifecycle.LiveData
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paramvir.paramnews.headlines.News
 import com.paramvir.paramnews.headlines.domain.NewsHeadlines
 import com.paramvir.paramnews.utils.getNewsFromNewsHeadlines
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +14,12 @@ import javax.inject.Inject
 class SavedArticleViewModel @Inject constructor(
 
 ) : ViewModel() {
-    val savedHeadlinesLiveData: LiveData<List<News>> = MutableLiveData<List<News>>()
+    val savedHeadlinesLiveData: MutableLiveData<List<NewsHeadlines>> = MutableLiveData()
+
+
+    fun getSavedArticles(context: Context) {
+        savedHeadlinesLiveData.value = FileHelper.readHeadlines(context = context)
+    }
 
     fun deleteNews(newsHeadlines: NewsHeadlines) {
         val news = getNewsFromNewsHeadlines(newsHeadlines)

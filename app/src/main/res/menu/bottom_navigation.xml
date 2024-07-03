@@ -9,4 +9,8 @@
         android:id="@+id/sourcesFragment"
         android:title="Sources" />
 
+    <item
+        android:id="@+id/savedFragment"
+        android:title="Saved" />
+
 </menu>
