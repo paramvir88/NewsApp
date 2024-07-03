@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paramvir.news.headlines.domain.NewsHeadlines
+import com.paramvir.news.headlines.NewsHeadlines
 import com.paramvir.news.utils.getNewsFromNewsHeadlines
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

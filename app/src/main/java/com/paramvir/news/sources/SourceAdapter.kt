@@ -1,0 +1,63 @@
+package com.paramvir.news.sources
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.paramvir.news.R
+import com.paramvir.news.databinding.SourceListItemBinding
+
+class SourceAdapter(
+    private var listOfSources: List<NewsSources>,
+    private val arrOfSources: MutableList<String>?
+) :
+    RecyclerView.Adapter<SourceAdapter.ViewHolder>() {
+    private var onClickListener: OnClickListener? = null
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var binding = SourceListItemBinding.bind(view)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.source_list_item, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return listOfSources.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        with(holder.binding) {
+            sourceCheckbox.text = listOfSources[position].name
+            sourceCheckbox.isChecked = arrOfSources?.contains(listOfSources[position].id) == true
+            sourceCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                onClickListener?.onClick(listOfSources[position].id, isChecked)
+            }
+        }
+    }
+
+    interface OnClickListener {
+        fun onClick(sourceId: String, isSelected: Boolean)
+    }
+
+    fun setOnClickListener(onClickListener: OnClickListener) {
+        this.onClickListener = onClickListener
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    fun upDateList(updatedList: List<NewsSources>) {
+        listOfSources = emptyList()
+        listOfSources = updatedList
+        notifyDataSetChanged()
+    }
+}
+

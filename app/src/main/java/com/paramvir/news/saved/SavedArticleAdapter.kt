@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.paramvir.news.R
 import com.paramvir.news.databinding.SavedNewsListItemBinding
-import com.paramvir.news.headlines.domain.NewsHeadlines
+import com.paramvir.news.headlines.NewsHeadlines
 
 class SavedArticleAdapter(
     private val context: Context,

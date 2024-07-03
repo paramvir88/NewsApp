@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.paramvir.news.databinding.FragmentSavedBinding
 import com.paramvir.news.headlines.HEADLINE_URL
-import com.paramvir.news.headlines.domain.NewsHeadlines
-import com.paramvir.news.headlines.views.HeadlinesDetailsActivity
+import com.paramvir.news.headlines.NewsHeadlines
+import com.paramvir.news.headlines.HeadlinesDetailsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -20,6 +20,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "API_KEY", "\"14a8301e38c74ec18ba091acdb18f32a\"")
+        buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
     }
 
     buildTypes {
@@ -41,6 +43,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
