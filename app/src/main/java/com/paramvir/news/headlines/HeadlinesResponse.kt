@@ -1,7 +1,5 @@
 package com.paramvir.news.headlines
 
-import com.paramvir.news.headlines.Article
-
 
 data class HeadlinesResponse(
 

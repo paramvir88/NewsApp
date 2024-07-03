@@ -45,7 +45,7 @@ class SavedArticleAdapter(
             Glide.with(context)
                 .load(listOfHeadlines[position].pic)
                 .placeholder(R.drawable.baseline_newspaper_24)
-                .into(articleImage);
+                .into(articleImage)
 
         }
     }

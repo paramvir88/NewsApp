@@ -17,12 +17,12 @@ class HeadlinesDetailsActivity : AppCompatActivity() {
         binding = ActivityHeadlinesDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val headlines = intent.getSerializableExtra(HEADLINE_EXTRA) as NewsHeadlines
-        headlines?.url?.let {
+        headlines.url?.let {
             binding.showHeadlinesDetails.loadUrl(headlines.url)
         }
 
         binding.saveButton.setOnClickListener { // Implement your save logic here
-            headlines?.let { saveArticle(it) }
+            headlines.let { saveArticle(it) }
         }
     }
 
@@ -32,7 +32,6 @@ class HeadlinesDetailsActivity : AppCompatActivity() {
         FileHelper.saveHeadline(this, headline = headlines)
         Toast.makeText(this, "This article is saved.", Toast.LENGTH_SHORT).show()
     }
-
 
 
 }

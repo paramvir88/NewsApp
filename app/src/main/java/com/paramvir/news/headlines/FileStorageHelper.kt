@@ -43,7 +43,8 @@ object FileStorageHelper {
         val urls = mutableListOf<String>()
         var fis: FileInputStream? = null
         try {
-            val file = File(context?.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), FILE_NAME)
+            val file =
+                File(context?.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), FILE_NAME)
             if (!file.exists()) {
                 Log.i(TAG, "File does not exist")
                 return emptyList()

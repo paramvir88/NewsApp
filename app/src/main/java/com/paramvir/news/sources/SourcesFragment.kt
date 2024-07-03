@@ -32,7 +32,7 @@ class SourcesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSourcesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

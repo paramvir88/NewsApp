@@ -1,9 +1,9 @@
 package com.paramvir.news.common.di
 
-import com.paramvir.news.sources.ISourceRepo
-import com.paramvir.news.sources.SourceRepo
 import com.paramvir.news.headlines.HeadlinesRepo
 import com.paramvir.news.headlines.IHeadlinesRepo
+import com.paramvir.news.sources.ISourceRepo
+import com.paramvir.news.sources.SourceRepo
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.paramvir.news.databinding.FragmentSavedBinding
 import com.paramvir.news.headlines.HEADLINE_URL
-import com.paramvir.news.headlines.NewsHeadlines
 import com.paramvir.news.headlines.HeadlinesDetailsActivity
+import com.paramvir.news.headlines.NewsHeadlines
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,7 +25,7 @@ class SavedArticleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSavedBinding.inflate(inflater, container, false)
         return binding.root
     }

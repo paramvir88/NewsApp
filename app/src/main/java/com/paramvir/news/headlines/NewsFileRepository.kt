@@ -13,7 +13,7 @@ class NewsFileRepository {
     fun delete(news: News) {
     }
 
-    fun getAllSaved(){
+    fun getAllSaved() {
 
     }
 }

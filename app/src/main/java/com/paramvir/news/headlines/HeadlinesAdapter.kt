@@ -44,7 +44,7 @@ class HeadlinesAdapter(
                     .load(headlines[position].pic)
                     .placeholder(R.drawable.baseline_newspaper_24)
                     .centerCrop()
-                    .into(newsImage);
+                    .into(newsImage)
             }
         }
 
