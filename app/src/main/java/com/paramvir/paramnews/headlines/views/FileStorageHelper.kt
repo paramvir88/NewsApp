@@ -9,7 +9,7 @@ import java.io.IOException
 object FileStorageHelper {
 
     private const val TAG = "FileStorageHelper"
-    private const val FILE_NAME = "news_urls.txt"
+    private const val FILE_NAME = "headlines.dat"
 
     fun saveUrlToFile(context: Context?, url: String?) {
         if (context == null || url.isNullOrEmpty()) {

@@ -16,4 +16,10 @@
         android:name="com.paramvir.paramnews.sources.views.SourcesFragment"
         android:label="Sources"
         tools:layout="@layout/fragment_sources" />
+
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.paramvir.paramnews.sources.views.SourcesFragment"
+        android:label="Sources"
+        tools:layout="@layout/fragment_sources" />
 </navigation>

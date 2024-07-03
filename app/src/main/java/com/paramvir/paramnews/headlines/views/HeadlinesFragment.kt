@@ -10,8 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.paramvir.paramnews.NewsActivity
+import com.paramvir.paramnews.R
 import com.paramvir.paramnews.Resource
 import com.paramvir.paramnews.databinding.FragmentHeadlinesBinding
+import com.paramvir.paramnews.headlines.HEADLINE_EXTRA
 import com.paramvir.paramnews.headlines.HEADLINE_URL
 import com.paramvir.paramnews.headlines.domain.NewsHeadlines
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,11 +31,16 @@ class HeadlinesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHeadlinesBinding.inflate(layoutInflater, container, false)
         val view = binding.root
         prepareNewsList()
-        handleHeadlineClick()
+        headlinesAdapter.setOnClickListener(object :
+            HeadlinesAdapter.NewsClickListener {
+            override fun onClick(headlines: NewsHeadlines) {
+                onHeadlineClick(headlines)
+            }
+        })
         return view
     }
 
@@ -74,23 +81,18 @@ class HeadlinesFragment : Fragment() {
         if (newsHeadlines.isEmpty()) {
             binding.errorTextView.visibility = View.VISIBLE
             binding.errorTextView.text =
-                "There are no news for the selected sources. Try changing the sources."
+                getString(R.string.there_are_no_news)
         } else {
             headlinesAdapter.updateHeadlines(newsHeadlines)
         }
     }
 
-    private fun handleHeadlineClick() {
-        headlinesAdapter.setOnClickListener(object :
-            HeadlinesAdapter.NewsClickListener {
-            override fun onClick(url: String) {
-                val bundle = Bundle()
-                bundle.putString(HEADLINE_URL, url)
-                val intent = Intent(requireContext(), HeadlinesDetailsActivity::class.java)
-                intent.putExtras(bundle)
-                requireActivity().startActivity(intent)
-            }
 
-        })
+    private fun onHeadlineClick(headline: NewsHeadlines) {
+
+        val intent = Intent(requireContext(), HeadlinesDetailsActivity::class.java).apply {
+            putExtra(HEADLINE_EXTRA, headline)
+        }
+        requireActivity().startActivity(intent)
     }
 }

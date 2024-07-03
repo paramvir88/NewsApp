@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save_later">Save Later</string>
     <string name="headlines_error">There is some issue in fethcing headines</string>
+    <string name="there_are_no_news">There are no news for the selected sources. Try changing the sources.</string>
 </resources>

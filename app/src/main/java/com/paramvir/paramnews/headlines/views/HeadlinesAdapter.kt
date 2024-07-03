@@ -33,7 +33,7 @@ class HeadlinesAdapter(
         headlines[position].run {
             with(holder.binding) {
                 headlineLayout.setOnClickListener {
-                    newsClickListener?.onClick(url ?: "")
+                    newsClickListener?.onClick(this@run)
                 }
                 newsHeadline.text = title
                 newsDescription.text = description
@@ -57,7 +57,7 @@ class HeadlinesAdapter(
 
 
     interface NewsClickListener {
-        fun onClick(url: String)
+        fun onClick(headlines: NewsHeadlines)
     }
 
 
