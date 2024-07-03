@@ -26,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/sample_news_image" />
+            android:src="@drawable/sample_news_image"
+            android:contentDescription="@string/news_image" />
 
     </androidx.cardview.widget.CardView>
 

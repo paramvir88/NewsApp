@@ -5,4 +5,11 @@
     <string name="save_later">Save Later</string>
     <string name="headlines_error">There is some issue in fethcing headines</string>
     <string name="there_are_no_news">There are no news for the selected sources. Try changing the sources.</string>
+    <string name="headlines">Headlines</string>
+    <string name="sources">Sources</string>
+    <string name="saved">Saved</string>
+    <string name="save_button">Save button</string>
+    <string name="news_image">News Image</string>
+    <string name="article_image">Article Image</string>
+    <string name="delete_article_button">Delete Article Button</string>
 </resources>

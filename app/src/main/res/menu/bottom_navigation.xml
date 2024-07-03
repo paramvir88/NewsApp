@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/headlinesFragment"
-        android:title="Headlines" />
+        android:title="@string/headlines" />
 
     <item
         android:id="@+id/sourcesFragment"
-        android:title="Sources" />
+        android:title="@string/sources" />
 
     <item
         android:id="@+id/savedFragment"
-        android:title="Saved" />
+        android:title="@string/saved" />
 
 </menu>
