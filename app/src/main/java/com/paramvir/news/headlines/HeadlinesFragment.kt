@@ -2,13 +2,10 @@ package com.paramvir.news.headlines
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.paramvir.news.BaseFragment
 import com.paramvir.news.NewsActivity
 import com.paramvir.news.R
 import com.paramvir.news.Resource
@@ -20,17 +17,16 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 
 @AndroidEntryPoint
-class HeadlinesFragment : Fragment() {
-    private val viewModel: HeadlinesViewModel by viewModels()
-    private lateinit var binding: FragmentHeadlinesBinding
+class HeadlinesFragment : BaseFragment<HeadlinesViewModel, FragmentHeadlinesBinding>(
+    R.layout.fragment_headlines,
+    HeadlinesViewModel::class.java
+) {
+
     private lateinit var headlinesAdapter: HeadlinesAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHeadlinesBinding.inflate(layoutInflater, container, false)
-        val view = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         prepareNewsList()
         headlinesAdapter.setOnClickListener(object :
             HeadlinesAdapter.NewsClickListener {
@@ -38,7 +34,6 @@ class HeadlinesFragment : Fragment() {
                 onHeadlineClick(headlines)
             }
         })
-        return view
     }
 
     override fun onStart() {
