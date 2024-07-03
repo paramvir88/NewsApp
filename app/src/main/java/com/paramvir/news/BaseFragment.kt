@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
+/**
+ * A Base class for all fragments to handle common Fragment setup related operations.
+ * More responsibilities can be added like sequencing of common view updates and others.
+ */
 abstract class BaseFragment<VM : ViewModel, VB : ViewDataBinding>(
     @LayoutRes private val layoutId: Int,
     private val viewModelClass: Class<VM>

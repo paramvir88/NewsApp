@@ -20,7 +20,7 @@ class HeadlinesViewModel @Inject constructor(
         MutableLiveData()
 
     val headlinesLiveData = _headlinesLiveData
-    val progress = MutableLiveData<Boolean>()
+    private val progress = MutableLiveData<Boolean>()
 
     /**
      * For the fragment to get the headlines data. The data is updated via the Livedata

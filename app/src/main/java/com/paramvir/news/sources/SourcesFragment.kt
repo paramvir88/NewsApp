@@ -1,44 +1,34 @@
 package com.paramvir.news.sources
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.paramvir.news.BaseFragment
 import com.paramvir.news.NewsActivity
+import com.paramvir.news.R
 import com.paramvir.news.Resource
 import com.paramvir.news.databinding.FragmentSourcesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SourcesFragment : Fragment() {
-    private val viewModel: SourcesViewModel by viewModels()
+class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
+    R.layout.fragment_sources,
+    SourcesViewModel::class.java
+) {
     private lateinit var sourceAdapter: SourceAdapter
-    private lateinit var binding: FragmentSourcesBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sourceAdapter = SourceAdapter(emptyList(), (activity as NewsActivity).sourceArray)
-        viewModel.getSources()
-        viewModel.sourceLiveData.observe(this) {
-            handleUI(it)
-        }
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentSourcesBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sourceAdapter = SourceAdapter(emptyList(), (activity as NewsActivity).sourceArray)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getSources()
+        viewModel.sourceLiveData.observe(viewLifecycleOwner) {
+            handleUI(it)
+        }
         initializeList()
         handleSourceClick()
     }
