@@ -15,6 +15,9 @@ constraintlayout = "2.1.4"
 mockk = "1.13.3"
 kotlin-coroutines-test = "1.6.0"
 androidx-architecture = "2.1.0"
+retrofit = "2.9.0"
+retrofit_gsonConverter = "2.9.0"
+okhttp-interceptor = "4.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +41,18 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 androidx-archTesting = { module = "androidx.arch.core:core-testing", version.ref = "androidx-architecture" }
 kotlin-coroutines-tests = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines-test" }
+retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit_gsonConverter" }
+okhttp-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp-interceptor" }
+
+[bundles]
+network = [
+    "retrofit-core",
+    "retrofit-gson",
+    "okhttp-interceptor",
+]
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
