@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "ParamNews"
 include(":app")
-include(":mylibrary")
+include(":data")

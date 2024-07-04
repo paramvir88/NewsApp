@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/savedFragment"
-        android:name="com.paramvir.news.saved.SavedArticleFragment"
+        android:name="com.paramvir.news.saved.views.SavedArticleFragment"
         android:label="Sources"
         tools:layout="@layout/fragment_sources" />
 </navigation>

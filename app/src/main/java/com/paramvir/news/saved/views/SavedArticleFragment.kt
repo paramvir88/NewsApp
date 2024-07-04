@@ -1,4 +1,4 @@
-package com.paramvir.news.saved
+package com.paramvir.news.saved.views
 
 import android.content.Intent
 import android.os.Bundle

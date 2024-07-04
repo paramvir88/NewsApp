@@ -1,4 +1,4 @@
-package com.paramvir.news.saved
+package com.paramvir.news.saved.views
 
 import android.content.Context
 import android.view.LayoutInflater
