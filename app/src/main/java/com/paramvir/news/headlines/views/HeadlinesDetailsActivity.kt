@@ -30,7 +30,6 @@ class HeadlinesDetailsActivity : AppCompatActivity() {
 
     private fun saveArticle(headlines: NewsHeadlines) {
 
-        //com.paramvir.news.headlines.data.FileStorageHelper.saveUrlToFile(this, url)
         FileHelper.saveHeadline(this, headline = headlines)
         Toast.makeText(this, "This article is saved.", Toast.LENGTH_SHORT).show()
     }

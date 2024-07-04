@@ -3,15 +3,16 @@ package com.paramvir.news.saved.views
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.paramvir.news.headlines.domain.NewsHeadlines
 import com.paramvir.news.saved.data.FileHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the [SavedFragment]
+ */
 @HiltViewModel
-class SavedArticleViewModel @Inject constructor(
+class SavedViewModel @Inject constructor(
 
 ) : ViewModel() {
     val savedHeadlinesLiveData: MutableLiveData<List<NewsHeadlines>> = MutableLiveData()
@@ -21,11 +22,8 @@ class SavedArticleViewModel @Inject constructor(
         savedHeadlinesLiveData.value = FileHelper.readHeadlines(context = context)
     }
 
-    fun deleteNews(newsHeadlines: NewsHeadlines) {
-        viewModelScope.launch {
-            // newsRepository.delete(news)
-        }
-
+    fun deleteNews(context: Context, newsHeadlines: NewsHeadlines) {
+        FileHelper.deleteHeadline(context, newsHeadlines)
     }
 
 

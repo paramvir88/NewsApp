@@ -71,4 +71,14 @@ object FileHelper {
             fis?.close()
         }
     }
+
+    fun deleteHeadline(context: Context, headline: NewsHeadlines) {
+        val existingHeadlines = readHeadlines(context).toMutableList()
+        if (existingHeadlines.remove(headline)) {
+            writeHeadlinesToFile(context, existingHeadlines)
+            Log.i(TAG, "Headline deleted successfully")
+        } else {
+            Log.i(TAG, "Headline not found")
+        }
+    }
 }
