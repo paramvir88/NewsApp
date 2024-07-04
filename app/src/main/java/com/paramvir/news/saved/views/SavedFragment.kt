@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.paramvir.news.R
 import com.paramvir.news.common.ui.BaseFragment
 import com.paramvir.news.common.utils.HEADLINE_EXTRA
+import com.paramvir.news.common.utils.truncateWithDots
 import com.paramvir.news.databinding.FragmentSavedBinding
 import com.paramvir.news.headlines.domain.NewsHeadlines
 import com.paramvir.news.headlines.views.HeadlinesDetailsActivity
@@ -82,13 +83,7 @@ class SavedFragment :
         requireActivity().startActivity(intent)
     }
 
-    fun String.truncateWithDots(maxLength: Int = 8): String {
-        return if (this.length > maxLength - 2) {
-            this.substring(0, maxLength - 2) + ".."
-        } else {
-            this
-        }
-    }
+
 
 
 }

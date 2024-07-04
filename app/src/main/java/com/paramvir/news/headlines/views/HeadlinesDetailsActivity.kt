@@ -3,8 +3,9 @@ package com.paramvir.news.headlines.views
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.paramvir.news.databinding.ActivityHeadlinesDetailsBinding
 import com.paramvir.news.common.utils.HEADLINE_EXTRA
+import com.paramvir.news.common.utils.truncateWithDots
+import com.paramvir.news.databinding.ActivityHeadlinesDetailsBinding
 import com.paramvir.news.headlines.domain.NewsHeadlines
 import com.paramvir.news.saved.data.FileHelper
 
@@ -31,7 +32,11 @@ class HeadlinesDetailsActivity : AppCompatActivity() {
     private fun saveArticle(headlines: NewsHeadlines) {
 
         FileHelper.saveHeadline(this, headline = headlines)
-        Toast.makeText(this, "This article is saved.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this,
+            "This article \"${headlines.title?.truncateWithDots(15)}\" is saved.",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 

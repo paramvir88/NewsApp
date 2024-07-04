@@ -37,10 +37,8 @@ class HeadlinesAdapter(
                 }
                 newsHeadline.text = title
                 newsDescription.text = description
-                newsAuthor.text = "Author: $author"
-                /*saveButton.setOnClickListener {
-                    newsClickListener?.saveLater(this@run)
-                }*/
+                newsAuthor.text = context.getString(R.string.author, author)
+
                 Glide.with(context)
                     .load(headlines[position].pic)
                     .placeholder(R.drawable.baseline_newspaper_24)
