@@ -48,7 +48,7 @@ class HeadlinesViewModelTest {
     }
 
     @Test
-    fun `test successful received  headlines `() {
+    fun `test successful received headlines `() {
         coEvery { networkRepo.getHeadlines("bbc-news,") } returns Response.success(
             getHeadlinesResponse()
         )
@@ -58,7 +58,7 @@ class HeadlinesViewModelTest {
     }
 
     @Test
-    fun `test failed received  headlines `() {
+    fun `test failed received headlines `() {
         coEvery { networkRepo.getHeadlines("bbc-news,") } returns Response.error(
             404, ResponseBody.create(null, "Not found response body")
         )

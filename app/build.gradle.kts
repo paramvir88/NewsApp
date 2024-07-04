@@ -20,7 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String", "API_KEY", "\"14a8301e38c74ec18ba091acdb18f32a\"")
+        buildConfigField("String", "API_KEY", "\"3ebc20fa0e424d46bf729bd354af6dba\"")
         buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
     }
 
