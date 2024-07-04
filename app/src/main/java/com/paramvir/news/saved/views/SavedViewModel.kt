@@ -19,7 +19,7 @@ class SavedViewModel @Inject constructor(
 
 
     fun getSavedArticles(context: Context) {
-        savedHeadlinesLiveData.value = FileHelper.readHeadlines(context = context)
+        savedHeadlinesLiveData.value = FileHelper.readHeadlines(context = context).toList()
     }
 
     fun deleteNews(context: Context, newsHeadlines: NewsHeadlines) {

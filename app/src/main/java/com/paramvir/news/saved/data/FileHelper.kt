@@ -11,24 +11,27 @@ import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
+/**
+ * Helper for serializing and storing the [NewsHeadlines] in File storage.
+ */
 object FileHelper {
 
     private const val FILE_NAME = "headlines.dat"
     private const val TAG = "FileHelper"
 
     fun saveHeadlines(context: Context, headlines: List<NewsHeadlines>) {
-        val existingHeadlines = readHeadlines(context).toMutableList()
+        val existingHeadlines = readHeadlines(context).toMutableSet()
         existingHeadlines.addAll(headlines)
         writeHeadlinesToFile(context, existingHeadlines)
     }
 
     fun saveHeadline(context: Context, headline: NewsHeadlines) {
-        val existingHeadlines = readHeadlines(context).toMutableList()
+        val existingHeadlines = readHeadlines(context).toMutableSet()
         existingHeadlines.add(headline)
         writeHeadlinesToFile(context, existingHeadlines)
     }
 
-    private fun writeHeadlinesToFile(context: Context, headlines: List<NewsHeadlines>) {
+    private fun writeHeadlinesToFile(context: Context, headlines: Set<NewsHeadlines>) {
         val file = File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), FILE_NAME)
         var fos: FileOutputStream? = null
         var oos: ObjectOutputStream? = null
@@ -46,39 +49,41 @@ object FileHelper {
         }
     }
 
-    fun readHeadlines(context: Context): List<NewsHeadlines> {
+    fun readHeadlines(context: Context): Set<NewsHeadlines> {
         val file = File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), FILE_NAME)
         var fis: FileInputStream? = null
         var ois: ObjectInputStream? = null
 
-        return try {
-            if (!file.exists()) {
-                return emptyList()
-            }
+            return try {
+                if (!file.exists()) {
+                    return emptySet()
+                }
 
-            fis = FileInputStream(file)
-            ois = ObjectInputStream(fis)
-            @Suppress("UNCHECKED_CAST")
-            ois.readObject() as List<NewsHeadlines>
-        } catch (e: IOException) {
-            Log.e(TAG, "Failed to read headlines", e)
-            emptyList()
-        } catch (e: ClassNotFoundException) {
-            Log.e(TAG, "Failed to cast to List<Headline>", e)
-            emptyList()
-        } finally {
-            ois?.close()
-            fis?.close()
+                fis = FileInputStream(file)
+                ois = ObjectInputStream(fis)
+                @Suppress("UNCHECKED_CAST")
+                ois.readObject() as Set<NewsHeadlines>
+            } catch (e: IOException) {
+                Log.e(TAG, "Failed to read headlines", e)
+                emptySet()
+            } catch (e: ClassNotFoundException) {
+                Log.e(TAG, "Failed to cast to List<Headline>", e)
+                emptySet()
+            } finally {
+                ois?.close()
+                fis?.close()
+
         }
     }
 
-    fun deleteHeadline(context: Context, headline: NewsHeadlines) {
-        val existingHeadlines = readHeadlines(context).toMutableList()
-        if (existingHeadlines.remove(headline)) {
-            writeHeadlinesToFile(context, existingHeadlines)
-            Log.i(TAG, "Headline deleted successfully")
-        } else {
-            Log.i(TAG, "Headline not found")
-        }
+     fun deleteHeadline(context: Context, headline: NewsHeadlines) {
+
+            val existingHeadlines = readHeadlines(context).toMutableSet()
+            if (existingHeadlines.remove(headline)) {
+                writeHeadlinesToFile(context, existingHeadlines)
+                Log.i(TAG, "Headline deleted successfully")
+            } else {
+                Log.i(TAG, "Headline not found")
+            }
     }
 }
