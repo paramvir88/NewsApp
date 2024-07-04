@@ -113,5 +113,13 @@ dependencies {
     //Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlin.coroutines.tests)
+    testImplementation(libs.androidx.archTesting)
+
+
+
+
+
 
 }

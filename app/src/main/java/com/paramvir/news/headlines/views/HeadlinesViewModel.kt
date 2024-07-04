@@ -51,7 +51,7 @@ class HeadlinesViewModel @Inject constructor(
     private fun getSelectedSources(sources: List<String>): String {
         var sourceStr = ""
         sources.forEach {
-            sourceStr = "$sourceStr,$it"
+            sourceStr = "$sourceStr$it"
         }
         return sourceStr
     }
