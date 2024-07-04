@@ -1,4 +1,4 @@
-package com.paramvir.news.sources
+package com.paramvir.news.sources.domain
 
 data class NewsSources(
     val id: String,

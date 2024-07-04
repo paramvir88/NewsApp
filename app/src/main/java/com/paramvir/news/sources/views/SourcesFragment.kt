@@ -1,16 +1,21 @@
-package com.paramvir.news.sources
+package com.paramvir.news.sources.views
 
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.paramvir.news.BaseFragment
+import com.paramvir.news.common.ui.BaseFragment
 import com.paramvir.news.NewsActivity
 import com.paramvir.news.R
-import com.paramvir.news.Resource
+import com.paramvir.news.common.network.Resource
 import com.paramvir.news.databinding.FragmentSourcesBinding
+import com.paramvir.news.sources.domain.NewsSources
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * For showing list of sources loaded from the NewsApi.
+ * User can select multiple sources which are persistent across user sessions.
+ */
 @AndroidEntryPoint
 class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
     R.layout.fragment_sources,
@@ -27,13 +32,13 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
         super.onStart()
         viewModel.getSources()
         viewModel.sourceLiveData.observe(viewLifecycleOwner) {
-            handleUI(it)
+            refreshSources(it)
         }
-        initializeList()
+        setupList()
         handleSourceClick()
     }
 
-    private fun handleUI(it: Resource<List<NewsSources>>?) {
+    private fun refreshSources(it: Resource<List<NewsSources>>?) {
         when (it) {
             is Resource.ResourceSuccess -> {
                 binding.newsProgressBar.visibility = View.GONE
@@ -41,7 +46,7 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
             }
 
             is Resource.ResourceError -> {
-                updateErrorUi()
+                displayError()
             }
 
             is Resource.ResourceLoading -> {
@@ -52,7 +57,7 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
         }
     }
 
-    private fun updateErrorUi() {
+    private fun displayError() {
         binding.newsProgressBar.visibility = View.GONE
         binding.errorTextView.visibility = View.VISIBLE
         binding.errorTextView.text = getString(R.string.could_not_load_the_sources)
@@ -72,7 +77,7 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
         })
     }
 
-    private fun initializeList() {
+    private fun setupList() {
         with(binding.sourcesList) {
             setHasFixedSize(true)
             val divider = DividerItemDecoration(

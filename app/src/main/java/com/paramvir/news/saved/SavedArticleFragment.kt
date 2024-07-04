@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.paramvir.news.BaseFragment
+import com.paramvir.news.common.ui.BaseFragment
 import com.paramvir.news.R
 import com.paramvir.news.databinding.FragmentSavedBinding
-import com.paramvir.news.headlines.HEADLINE_URL
+import com.paramvir.news.common.utils.HEADLINE_URL
 import com.paramvir.news.headlines.views.HeadlinesDetailsActivity
 import com.paramvir.news.headlines.domain.NewsHeadlines
 import dagger.hilt.android.AndroidEntryPoint

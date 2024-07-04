@@ -1,4 +1,4 @@
-package com.paramvir.news.api
+package com.paramvir.news.sources.data
 
 
 data class SourcesResponse(

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/sourcesFragment"
-        android:name="com.paramvir.news.sources.SourcesFragment"
+        android:name="com.paramvir.news.sources.views.SourcesFragment"
         android:label="Sources"
         tools:layout="@layout/fragment_sources" />
 

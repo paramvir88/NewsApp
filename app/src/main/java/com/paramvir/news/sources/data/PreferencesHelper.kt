@@ -1,4 +1,4 @@
-package com.paramvir.news.sources
+package com.paramvir.news.sources.data
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.paramvir.news.headlines.domain.NewsHeadlines
-import com.paramvir.news.utils.getNewsFromNewsHeadlines
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +21,6 @@ class SavedArticleViewModel @Inject constructor(
     }
 
     fun deleteNews(newsHeadlines: NewsHeadlines) {
-        val news = getNewsFromNewsHeadlines(newsHeadlines)
         viewModelScope.launch {
             // newsRepository.delete(news)
         }

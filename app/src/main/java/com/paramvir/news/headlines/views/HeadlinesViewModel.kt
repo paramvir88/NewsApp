@@ -3,8 +3,8 @@ package com.paramvir.news.headlines.views
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paramvir.news.Resource
-import com.paramvir.news.headlines.DEFAULT_SOURCE
+import com.paramvir.news.common.network.Resource
+import com.paramvir.news.common.utils.DEFAULT_SOURCE
 import com.paramvir.news.headlines.data.IHeadlinesRepo
 import com.paramvir.news.headlines.data.Article
 import com.paramvir.news.headlines.domain.NewsHeadlines

@@ -1,4 +1,4 @@
-package com.paramvir.news.sources
+package com.paramvir.news.sources.views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.paramvir.news.R
 import com.paramvir.news.databinding.SourceListItemBinding
+import com.paramvir.news.sources.domain.NewsSources
 
 class SourceAdapter(
     private var listOfSources: List<NewsSources>,

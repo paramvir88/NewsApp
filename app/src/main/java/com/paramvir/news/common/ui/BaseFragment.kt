@@ -1,4 +1,4 @@
-package com.paramvir.news
+package com.paramvir.news.common.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

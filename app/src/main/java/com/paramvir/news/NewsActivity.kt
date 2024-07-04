@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.paramvir.news.sources.PreferencesHelper
+import com.paramvir.news.sources.data.PreferencesHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

@@ -2,7 +2,7 @@ package com.paramvir.news.common.di
 
 import com.paramvir.news.BuildConfig
 import com.paramvir.news.headlines.data.HeadlinesApi
-import com.paramvir.news.sources.SourceApi
+import com.paramvir.news.sources.data.SourceApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

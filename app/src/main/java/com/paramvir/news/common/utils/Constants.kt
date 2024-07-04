@@ -1,4 +1,4 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.common.utils
 
 
 const val DEFAULT_SOURCE = ""

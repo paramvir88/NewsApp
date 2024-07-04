@@ -1,4 +1,4 @@
-package com.paramvir.news
+package com.paramvir.news.common.network
 
 /**
  * Represents the response from the network with possible states as [ResourceSuccess], [ResourceError] and [ResourceLoading]

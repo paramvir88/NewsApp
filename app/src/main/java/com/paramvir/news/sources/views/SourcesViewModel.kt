@@ -1,39 +1,46 @@
-package com.paramvir.news.sources
+package com.paramvir.news.sources.views
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paramvir.news.Resource
-import com.paramvir.news.api.Source
+import com.paramvir.news.common.network.Resource
 import com.paramvir.news.sources.data.ISourceRepo
+import com.paramvir.news.sources.data.Source
+import com.paramvir.news.sources.domain.NewsSources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the [SourcesFragment].
+ */
 @HiltViewModel
 class SourcesViewModel @Inject constructor(private val repo: ISourceRepo) : ViewModel() {
+
     private val _sourceLiveData: MutableLiveData<Resource<List<NewsSources>>> = MutableLiveData()
     val sourceLiveData: LiveData<Resource<List<NewsSources>>> = _sourceLiveData
+
     fun getSources() {
+        _sourceLiveData.value = Resource.ResourceLoading()
         viewModelScope.launch {
             val res = repo.getAllSources()
             if (res.isSuccessful) {
                 res.body()?.let {
                     _sourceLiveData.value =
-                        Resource.ResourceSuccess(getNewsSources(res.body()?.sources))
+                        Resource.ResourceSuccess(mapSourcesToNewsSources(res.body()?.sources))
                 }
             } else {
-                _sourceLiveData.value = Resource.ResourceError(Exception("Unable to get sources"))
+                _sourceLiveData.value = Resource.ResourceError(Exception(res.message()))
             }
         }
     }
 
-    private fun getNewsSources(list: List<Source>?): List<NewsSources> {
-        val listOfNewSources = mutableListOf<NewsSources>()
+    private fun mapSourcesToNewsSources(list: List<Source>?): List<NewsSources> {
+        val newSources = mutableListOf<NewsSources>()
         list?.forEach {
-            listOfNewSources.add(NewsSources(it.id, it.name))
+            newSources.add(NewsSources(it.id, it.name))
         }
-        return listOfNewSources
+        return newSources
     }
 }

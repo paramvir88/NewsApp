@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.paramvir.news.databinding.ActivityHeadlinesDetailsBinding
-import com.paramvir.news.headlines.HEADLINE_EXTRA
+import com.paramvir.news.common.utils.HEADLINE_EXTRA
 import com.paramvir.news.headlines.domain.NewsHeadlines
 import com.paramvir.news.saved.FileHelper
 
