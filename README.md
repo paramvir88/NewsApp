@@ -1,12 +1,37 @@
 # Articles Headlines App
-The Articles Headlines App Android app is constructed entirely using Kotlin and Jetpack architecure components. All business logics are covered with unit tests.
+The Articles Headlines App is made using the following: 
+1. Kotlin Language.
+2. Jetpack architecure components.
+3. All business logics are covered with unit tests.
+4. All problem statement points are covered.
+
+   
 # Features
 This application is designed to display the latest headlines and news from selected sources. There is three tabs in the application to show latest list of headlines, sources and saved articles. On click of headlines, User will navigate to webview to read full detail article.
+1. Feature_1
+2. feature_2
+3. Feature_3
+4. ...
+
 # Screenshots
+<img src = "https://github.com/paramvir88/NewsApp/assets/1575084/5af8a62a-4e20-4958-a0e3-66f2a500d37a" width="220">
+<img src = "https://github.com/paramvir88/NewsApp/assets/1575084/ac0c4eea-52b5-4231-805e-a7837c448407a" width="220">
+<img src = "https://github.com/paramvir88/NewsApp/assets/1575084/778ad3b9-1161-4e0b-b450-f55ce0818e68" width="220">
+<img src = "https://github.com/paramvir88/NewsApp/assets/1575084/9ac2deda-aa8a-4b2d-893d-58ef05e2ab4a" width="220">
+<img src = "https://github.com/paramvir88/NewsApp/assets/1575084/b3551ebf-3850-4148-8796-6844bb2b4ec5" width="220">
+
+Package Structure:
+...
+
+
+
 # Architecture
 The Articles Headlines App app followed MVVM architecture. The two major layers are:
 * UI layer
 * Data layer
+* ...
+
+
 
 ![app_diagram](https://github.com/swatishrivastava/newsApp/assets/11307086/c7ba6a6f-b8b0-45c3-94bf-31a76c270b58)
 
