@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.paramvir.news.R
 import com.paramvir.news.common.ui.BaseFragment
-import com.paramvir.news.common.utils.HEADLINE_URL
+import com.paramvir.news.common.utils.HEADLINE_EXTRA
 import com.paramvir.news.databinding.FragmentSavedBinding
 import com.paramvir.news.headlines.domain.NewsHeadlines
 import com.paramvir.news.headlines.views.HeadlinesDetailsActivity
@@ -56,12 +56,8 @@ class SavedFragment :
     private fun handleNewsClick() {
         savedAdapter.setOnClickListener(object :
             SavedArticleAdapter.OnClickListener {
-            override fun onClick(url: String) {
-                val bundle = Bundle()
-                bundle.putString(HEADLINE_URL, url)
-                val intent = Intent(requireContext(), HeadlinesDetailsActivity::class.java)
-                intent.putExtras(bundle)
-                requireActivity().startActivity(intent)
+            override fun onClick(newsHeadlines: NewsHeadlines) {
+                onHeadlineClick(newsHeadlines)
             }
 
             override fun onDeleteArticle(news: NewsHeadlines) {
@@ -76,6 +72,14 @@ class SavedFragment :
 
 
         })
+    }
+
+    private fun onHeadlineClick(headline: NewsHeadlines) {
+
+        val intent = Intent(requireContext(), HeadlinesDetailsActivity::class.java).apply {
+            putExtra(HEADLINE_EXTRA, headline)
+        }
+        requireActivity().startActivity(intent)
     }
 
     fun String.truncateWithDots(maxLength: Int = 8): String {

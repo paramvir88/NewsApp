@@ -8,12 +8,12 @@
         android:id="@+id/article_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:contentDescription="@string/article_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        android:contentDescription="@string/article_image" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/article_title"
@@ -61,16 +61,17 @@
 
     <ImageView
         android:id="@+id/deleteArticle"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
         android:layout_marginTop="@dimen/_4dp"
         android:layout_marginEnd="@dimen/_16dp"
-        android:src="@drawable/baseline_newspaper_24"
+        android:contentDescription="@string/delete_article_button"
+        android:src="@drawable/delete_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        android:contentDescription="@string/delete_article_button" />
+        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,7 @@ class SavedArticleAdapter(
         with(holder.binding) {
             headlineLayout.setOnClickListener {
                 onClickListener?.onClick(
-                    listOfHeadlines[position].url ?: ""
+                    listOfHeadlines[position]
                 )
             }
             articleTitle.text = listOfHeadlines[position].title
@@ -51,7 +51,7 @@ class SavedArticleAdapter(
     }
 
     interface OnClickListener {
-        fun onClick(url: String)
+        fun onClick(newsHeadlines: NewsHeadlines)
         fun onDeleteArticle(newsHeadlines: NewsHeadlines)
     }
 
