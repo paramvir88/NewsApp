@@ -1,4 +1,4 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.sources
 
 data class Source(
     val id: String,

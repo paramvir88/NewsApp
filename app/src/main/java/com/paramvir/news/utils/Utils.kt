@@ -1,7 +1,7 @@
 package com.paramvir.news.utils
 
 import com.paramvir.news.headlines.News
-import com.paramvir.news.headlines.NewsHeadlines
+import com.paramvir.news.headlines.domain.NewsHeadlines
 
 fun getNewsFromNewsHeadlines(newsHeadlines: NewsHeadlines): News {
     return News(

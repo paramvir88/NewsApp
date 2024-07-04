@@ -1,4 +1,6 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.headlines.data
+
+import com.paramvir.news.sources.Source
 
 data class Article(
     val author: String,

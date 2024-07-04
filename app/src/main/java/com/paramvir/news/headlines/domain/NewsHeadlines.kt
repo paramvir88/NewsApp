@@ -1,4 +1,4 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.headlines.domain
 
 import java.io.Serializable
 

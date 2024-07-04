@@ -1,4 +1,4 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.headlines.views
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.bumptech.glide.Glide
 import com.paramvir.news.R
 import com.paramvir.news.databinding.HeadlinesListItemBinding
+import com.paramvir.news.headlines.domain.NewsHeadlines
 
 class HeadlinesAdapter(
     private val context: Context,

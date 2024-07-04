@@ -1,4 +1,4 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.headlines.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import com.paramvir.news.NewsActivity
 import com.paramvir.news.R
 import com.paramvir.news.Resource
 import com.paramvir.news.databinding.FragmentHeadlinesBinding
+import com.paramvir.news.headlines.HEADLINE_EXTRA
+import com.paramvir.news.headlines.domain.NewsHeadlines
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

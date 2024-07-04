@@ -1,9 +1,11 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.headlines.views
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.paramvir.news.databinding.ActivityHeadlinesDetailsBinding
+import com.paramvir.news.headlines.HEADLINE_EXTRA
+import com.paramvir.news.headlines.domain.NewsHeadlines
 import com.paramvir.news.saved.FileHelper
 
 /**
@@ -28,7 +30,7 @@ class HeadlinesDetailsActivity : AppCompatActivity() {
 
     private fun saveArticle(headlines: NewsHeadlines) {
 
-        //com.paramvir.news.headlines.FileStorageHelper.saveUrlToFile(this, url)
+        //com.paramvir.news.headlines.data.FileStorageHelper.saveUrlToFile(this, url)
         FileHelper.saveHeadline(this, headline = headlines)
         Toast.makeText(this, "This article is saved.", Toast.LENGTH_SHORT).show()
     }

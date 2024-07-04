@@ -9,8 +9,8 @@ import com.paramvir.news.BaseFragment
 import com.paramvir.news.R
 import com.paramvir.news.databinding.FragmentSavedBinding
 import com.paramvir.news.headlines.HEADLINE_URL
-import com.paramvir.news.headlines.HeadlinesDetailsActivity
-import com.paramvir.news.headlines.NewsHeadlines
+import com.paramvir.news.headlines.views.HeadlinesDetailsActivity
+import com.paramvir.news.headlines.domain.NewsHeadlines
 import dagger.hilt.android.AndroidEntryPoint
 
 

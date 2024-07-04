@@ -3,7 +3,7 @@ package com.paramvir.news.saved
 import android.content.Context
 import android.os.Environment
 import android.util.Log
-import com.paramvir.news.headlines.NewsHeadlines
+import com.paramvir.news.headlines.domain.NewsHeadlines
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream

@@ -1,4 +1,4 @@
-package com.paramvir.news.headlines
+package com.paramvir.news.headlines.data
 
 import retrofit2.Response
 
