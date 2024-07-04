@@ -2,7 +2,7 @@
     <string name="app_name">Articles Headlines</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="save_later">Save Later</string>
-    <string name="headlines_error">Just got an issue fetching headlines.</string>
+    <string name="headlines_error">There are no news available. Try changing news sources.</string>
     <string name="there_are_no_news">There are no news for the selected sources. Try changing the sources.</string>
     <string name="headlines">Headlines</string>
     <string name="sources">Sources</string>

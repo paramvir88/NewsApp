@@ -3,6 +3,9 @@ package com.paramvir.news.sources
 import android.content.Context
 import android.content.SharedPreferences
 
+/**
+ * Interface for SharedPreferences used in the app.
+ */
 object PreferencesHelper {
     private const val PREF_NAME = "NewsPreferences"
     private const val KEY_SELECTED_SOURCES = "selected_sources"
