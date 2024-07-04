@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewsActivity : AppCompatActivity() {
-    var sourceArray = mutableListOf<String>()
+    var newsSources = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +26,12 @@ class NewsActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        PreferencesHelper.saveSelectedSources(this, sourceArray)
+        PreferencesHelper.saveSelectedSources(this, newsSources)
     }
 
     override fun onStart() {
         super.onStart()
 
-        sourceArray = PreferencesHelper.getSelectedSources(this).toMutableList()
+        newsSources = PreferencesHelper.getSelectedSources(this).toMutableList()
     }
 }

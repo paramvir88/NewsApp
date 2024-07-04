@@ -9,11 +9,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * ViewModel class for the HeadlinesFragment.
+ * ViewModel class for the [HeadlinesFragment].
  */
 @HiltViewModel
 class HeadlinesViewModel @Inject constructor(
-    private val headlineRepo: IHeadlinesRepo,
+    private val headlinesRepo: IHeadlinesRepo,
 ) : ViewModel() {
 
     private val _headlinesLiveData: MutableLiveData<Resource<List<NewsHeadlines>>> =
@@ -23,18 +23,18 @@ class HeadlinesViewModel @Inject constructor(
     private val progress = MutableLiveData<Boolean>()
 
     /**
-     * For the fragment to get the headlines data. The data is updated via the Livedata
+     * Fetching [NewsHeadlines]. The data is updated via the Livedata.
      */
     fun getHeadlines(sources: List<String>) {
 
         _headlinesLiveData.value = Resource.ResourceLoading()
         viewModelScope.launch {
             val response =
-                headlineRepo.getHeadlines(getSelectedSources(sources).ifEmpty { DEFAULT_SOURCE })
+                headlinesRepo.getHeadlines(getSelectedSources(sources).ifEmpty { DEFAULT_SOURCE })
             if (response.isSuccessful) {
                 response.body()?.let {
                     _headlinesLiveData.value =
-                        Resource.ResourceSuccess(getHeadlinesFromArticles(it.articles))
+                        Resource.ResourceSuccess(mapArticlesToNewsHeadlines(it.articles))
                     progress.value = false
                 }
             } else {
@@ -47,12 +47,12 @@ class HeadlinesViewModel @Inject constructor(
     private fun getSelectedSources(sources: List<String>): String {
         var sourceStr = ""
         sources.forEach {
-            sourceStr = "$sourceStr,$it"
+            sourceStr = "$sourceStr$it"
         }
         return sourceStr
     }
 
-    private fun getHeadlinesFromArticles(articles: List<Article>): List<NewsHeadlines> {
+    private fun mapArticlesToNewsHeadlines(articles: List<Article>): List<NewsHeadlines> {
         return articles.map {
             NewsHeadlines(
                 title = it.title,
@@ -62,17 +62,5 @@ class HeadlinesViewModel @Inject constructor(
                 url = it.url
             )
         }.toMutableList()
-    }
-
-    /** The news source is to be be given to the news api to get the news only for the given source.
-     *[]
-     */
-    fun getNewsSource(sources: String): String {
-
-        return ""
-    }
-
-    fun saveForLater(news: News) {
-
     }
 }

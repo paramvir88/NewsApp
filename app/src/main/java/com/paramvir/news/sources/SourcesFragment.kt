@@ -20,7 +20,7 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sourceAdapter = SourceAdapter(emptyList(), (activity as NewsActivity).sourceArray)
+        sourceAdapter = SourceAdapter(emptyList(), (activity as NewsActivity).newsSources)
     }
 
     override fun onStart() {
@@ -55,7 +55,7 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
     private fun updateErrorUi() {
         binding.newsProgressBar.visibility = View.GONE
         binding.errorTextView.visibility = View.VISIBLE
-        binding.errorTextView.text = "Could not load the sources."
+        binding.errorTextView.text = getString(R.string.could_not_load_the_sources)
     }
 
 
@@ -63,10 +63,10 @@ class SourcesFragment : BaseFragment<SourcesViewModel, FragmentSourcesBinding>(
         sourceAdapter.setOnClickListener(object :
             SourceAdapter.OnClickListener {
             override fun onClick(sourceId: String, isSelected: Boolean) {
-                if (isSelected && !(activity as NewsActivity).sourceArray.contains(sourceId)) {
-                    (activity as NewsActivity).sourceArray.add(sourceId)
+                if (isSelected && !(activity as NewsActivity).newsSources.contains(sourceId)) {
+                    (activity as NewsActivity).newsSources.add(sourceId)
                 } else {
-                    (activity as NewsActivity).sourceArray.remove(sourceId)
+                    (activity as NewsActivity).newsSources.remove(sourceId)
                 }
             }
         })

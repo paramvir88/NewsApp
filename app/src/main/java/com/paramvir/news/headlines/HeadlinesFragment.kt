@@ -13,7 +13,7 @@ import com.paramvir.news.databinding.FragmentHeadlinesBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * The main landing fragment where the headlines for the selected sources are shown.
+ * The main landing fragment where the [NewsHeadlines] items for the selected sources are shown.
  */
 
 @AndroidEntryPoint
@@ -26,8 +26,24 @@ class HeadlinesFragment : BaseFragment<HeadlinesViewModel, FragmentHeadlinesBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
+    }
 
-        prepareNewsList()
+    override fun onStart() {
+        super.onStart()
+        fetchHeadlines()
+    }
+
+
+    private fun setupViews() {
+        with(binding.newsRecyclerView) {
+            layoutManager = LinearLayoutManager(activity)
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
+            headlinesAdapter = HeadlinesAdapter(requireContext(), emptyList())
+            adapter = headlinesAdapter
+        }
+
         headlinesAdapter.setOnClickListener(object :
             HeadlinesAdapter.NewsClickListener {
             override fun onClick(headlines: NewsHeadlines) {
@@ -36,10 +52,7 @@ class HeadlinesFragment : BaseFragment<HeadlinesViewModel, FragmentHeadlinesBind
         })
     }
 
-    override fun onStart() {
-
-        super.onStart()
-        viewModel.getHeadlines((activity as NewsActivity).sourceArray)
+    private fun fetchHeadlines() {
         viewModel.headlinesLiveData.observe(this) {
             when (it) {
                 is Resource.ResourceSuccess -> {
@@ -47,7 +60,7 @@ class HeadlinesFragment : BaseFragment<HeadlinesViewModel, FragmentHeadlinesBind
                 }
 
                 is Resource.ResourceError -> {
-                    //updateErrorUi()
+                    showError()
                 }
 
                 is Resource.ResourceLoading -> {
@@ -55,17 +68,7 @@ class HeadlinesFragment : BaseFragment<HeadlinesViewModel, FragmentHeadlinesBind
                 }
             }
         }
-    }
-
-
-    private fun prepareNewsList() {
-        with(binding.newsList) {
-            layoutManager = LinearLayoutManager(activity)
-            setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
-            headlinesAdapter = HeadlinesAdapter(requireContext(), emptyList())
-            adapter = headlinesAdapter
-        }
+        viewModel.getHeadlines((activity as NewsActivity).newsSources)
     }
 
     private fun refreshNews(newsHeadlines: List<NewsHeadlines>) {
@@ -86,5 +89,10 @@ class HeadlinesFragment : BaseFragment<HeadlinesViewModel, FragmentHeadlinesBind
             putExtra(HEADLINE_EXTRA, headline)
         }
         requireActivity().startActivity(intent)
+    }
+
+    private fun showError() {
+        binding.newsProgressBar.visibility = View.GONE
+        binding.errorTextView.visibility = View.VISIBLE
     }
 }
