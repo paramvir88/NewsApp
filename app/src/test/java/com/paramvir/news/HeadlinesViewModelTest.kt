@@ -49,17 +49,17 @@ class HeadlinesViewModelTest {
 
     @Test
     fun `test successful received headlines `() {
-        coEvery { networkRepo.getHeadlines("bbc-news,") } returns Response.success(
+        coEvery { networkRepo.getHeadlines(",bbc-news") } returns Response.success(
             getHeadlinesResponse()
         )
         headlinesViewModel.headlinesLiveData.observeForever {}
-        headlinesViewModel.getHeadlines(listOf("bbc-news,"))
+        headlinesViewModel.getHeadlines(listOf("bbc-news"))
         assert(headlinesViewModel.headlinesLiveData.value is Resource.ResourceSuccess)
     }
 
     @Test
     fun `test failed received headlines `() {
-        coEvery { networkRepo.getHeadlines("bbc-news,") } returns Response.error(
+        coEvery { networkRepo.getHeadlines(",bbc-news,") } returns Response.error(
             404, ResponseBody.create(null, "Not found response body")
         )
         headlinesViewModel.getHeadlines(listOf("bbc-news,"))
