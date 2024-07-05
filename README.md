@@ -105,12 +105,7 @@ The Articles Headlines App app followed Clean Architecture with MVVM pattern. Be
 * Two modeules created : app module and data module. Module separate enfore dependency flow and prevents from accidentally using classes from opposite direction.
 * Use-cases are recommended in clean archtecture but not used here as the scope does not demand.
 * Repository pattern is used to interact with data.
-
-
-
-
-# Modularization
-Articles Headlines App fully modularized application. Please find all modules details below: 
+ 
 
 ![ArticleHeadlines Architecture drawio](https://github.com/paramvir88/NewsApp/assets/1575084/ef248db1-e967-44fa-91d3-dda98ea6f40a)
 
